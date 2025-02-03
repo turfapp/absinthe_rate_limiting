@@ -1,18 +1,8 @@
 defmodule AbsintheRateLimiting do
-  @moduledoc """
-  Documentation for `AbsintheRateLimiting`.
-  """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> AbsintheRateLimiting.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  @external_resource Path.expand("./README.md")
+  @moduledoc File.read!(Path.expand("./README.md"))
+             |> String.split("<!-- README START -->")
+             |> Enum.at(1)
+             |> String.split("<!-- README END -->")
+             |> List.first()
 end
