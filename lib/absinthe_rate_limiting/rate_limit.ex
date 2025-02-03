@@ -3,6 +3,7 @@ defmodule AbsintheRateLimiting.RateLimit do
   Rate limiting middleware for Absinthe.
 
   ## Usage
+
   To use the rate limiting middleware, you must first configure Hammer. See the
   [Hammer documentation](https://hexdocs.pm/hammer) for more information.
 
@@ -20,7 +21,7 @@ defmodule AbsintheRateLimiting.RateLimit do
   | Option       | Description                                                                                                                                                                                                                                                     | Default Value                  |
   |--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|
   | `:scale_ms`  | Integer indicating size of bucket in milliseconds.                                                                                                                                                                                                              | `60_000`                       |
-  | `:limit`     | Integer maximum count of actions within the bucket. In other words, the maximum number of requests that are allowed in `:scale_ms` milliseconds.                                                                                                                | `100`                          |
+  | `:limit`     | Integer maximum count of actions within the bucket. In other words, the maximum number of requests that are allowed in `:scale_ms` milliseconds.                                                                                                                | `25`                           |
   | `:result`    | The result to return when the rate limit is exceeded.                                                                                                                                                                                                           | `{:error, :too_many_requests}` |
   | `:id`        | The name of the bucket, or a list of keys to fetch the name from the context or arguments. The bucket will always be scoped per field.                                                                                                                          | `"default"`                    |
   | `:id_source` | The source of the ID, either `:static`, `:context`, or `:arguments`. When the source is `:static`, `:id` will be used as the name of the bucket. Otherwise, the Absinthe context or the arguments passed to the field respectively will be indexed using `:id`. | `:static`                      |
@@ -29,7 +30,7 @@ defmodule AbsintheRateLimiting.RateLimit do
 
       config :absinthe_rate_limiting,
         scale_ms: 60_000,
-        limit: 100,
+        limit: 25,
         result: {:error, :too_many_requests},
         id: "default",
         id_source: :static
