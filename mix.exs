@@ -16,6 +16,7 @@ defmodule AbsintheRateLimiting.MixProject do
       source_url: @source_url,
       deps: deps(),
       docs: [
+        main: "AbsintheRateLimiting",
         extras: ["README.md"]
       ]
     ]
