@@ -4,10 +4,18 @@ defmodule AbsintheRateLimiting.RateLimit do
 
   ## Usage
 
-  To use the rate limiting middleware, you must first configure Hammer. See the
-  [Hammer documentation](https://hexdocs.pm/hammer) for more information.
+  To use the rate limiting middleware, you must first configure Hammer. For example:
 
-  The next step is to add the middleware to the query that needs to be rate
+      config :hammer,
+        backend:
+          {Hammer.Backend.ETS, [
+            expiry_ms: 1000 * 60 * 60 * 4,
+            cleanup_interval_ms: 1000 * 60 * 10
+          ]}
+
+  See the [Hammer documentation](https://hexdocs.pm/hammer) for more information.
+
+  The next step is to add the middleware to all queries that needs to be rate
   limited:
 
       field :my_field, :string do
@@ -45,10 +53,14 @@ defmodule AbsintheRateLimiting.RateLimit do
 
   ## Disabling rate limiting
 
-  Rate limiting can be disabled by setting the `:active` configuration option to `false` in your `config.exs`:
+  Rate limiting can be disabled by setting the `:active` configuration option to
+  `false` in your `config.exs`:
 
       config :absinthe_rate_limiting,
         active: false
+
+  This will bypass the rate limiting middleware and allow all requests to pass
+  through. This can be useful for testing or development environments.
   """
 
   @behaviour Absinthe.Middleware
