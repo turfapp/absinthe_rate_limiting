@@ -4,7 +4,7 @@
 
 <!-- README START -->
 
-`absinthe_rate_limiting` is a middleware-based ratelimiter for
+`absinthe_rate_limiting` is a middleware-based rate limiter for
 [Absinthe](https://hexdocs.pm/absinthe/overview.html) that uses
 [Hammer](https://hexdocs.pm/hammer/index.html).
 
